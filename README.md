@@ -57,6 +57,58 @@ The **Decentralized Will & Inheritance System** is a smart contract that automat
 - `distributeFunds()` – Checks if the owner is inactive and distributes assets.
 - `receive()` – Allows the contract to receive ETH deposits.
 
+## Here’s the text-based flowchart for your Decentralized Will & Inheritance System:
+
+            +----------------------+
+            |  Owner Deploys Contract  |
+            |  (Sets Beneficiaries)   |
+            +----------------------+
+                      |
+                      v
+            +----------------------+
+            |  Owner Calls confirmActivity()  |
+            |  (To Confirm They Are Active)  |
+            +----------------------+
+                      |
+                      v
+            +----------------------+
+            |  Timer Starts        |
+            |  (Based on inactivity threshold) |
+            +----------------------+
+                      |
+          +----------+----------+
+          |                     |
+          v                     v
+  +----------------+      +----------------+
+  | Owner Calls    | Yes  | Timer Expires  |
+  | confirmActivity() | --> | (Owner Inactive) |
+  +----------------+      +----------------+
+                                    |
+                                    v
+                          +----------------------+
+                          | Any User Calls       |
+                          | distributeFunds()    |
+                          +----------------------+
+                                    |
+                                    v
+                          +----------------------+
+                          | Smart Contract       |
+                          | Transfers Assets     |
+                          +----------------------+
+                                    |
+                                    v
+                          +----------------------+
+                          | Beneficiaries Can    |
+                          | Withdraw Their Share |
+                          +----------------------+
+How It Works?
+1️⃣ Owner deploys contract and registers beneficiaries.
+2️⃣ Owner must check in periodically by calling confirmActivity().
+3️⃣ If owner is inactive beyond the threshold, the timer expires.
+4️⃣ Any user can trigger distributeFunds(), executing the will.
+5️⃣ Smart contract automatically transfers assets to beneficiaries.
+6️⃣ Beneficiaries can withdraw their inheritance.
+
 ## 🔐 Security Considerations
 
 - **Owner must check in periodically** to prevent unintended fund distribution.
